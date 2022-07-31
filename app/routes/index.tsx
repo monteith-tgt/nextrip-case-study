@@ -1,4 +1,4 @@
-import { useLoaderData } from '@remix-run/react';
+import { useLoaderData, useParams } from '@remix-run/react';
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 
@@ -12,7 +12,9 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 const Index = () => {
-  const routes = useLoaderData();
+  const routes: Route[] = useLoaderData();
+  const params = useParams();
+
   return (
     <>
       <header className="text-center my-4">
@@ -34,7 +36,7 @@ const Index = () => {
         </nav>
       </header>
       <main className="flex">
-        <RoutesScreen routes={routes} />
+        <RoutesScreen selectedRouteId={params.routeId} routes={routes} />
         <div>
           <p>Please select a route.</p>
         </div>

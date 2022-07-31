@@ -1,18 +1,19 @@
+import { useLoaderData, useParams } from '@remix-run/react';
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { Outlet, useLoaderData } from '@remix-run/react';
 
 import { getRoutes } from '~/client/nextrip';
 import type { Route } from '~/interfaces/nextrip';
 import RoutesScreen from '~/screens/routes';
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ params }) => {
   const routes: Route[] = await getRoutes();
   return json(routes);
 };
 
 const Index = () => {
-  const routes = useLoaderData();
+  const routes: Route[] = useLoaderData();
+  const params = useParams();
 
   return (
     <>
@@ -35,8 +36,10 @@ const Index = () => {
         </nav>
       </header>
       <main className="flex">
-        <RoutesScreen routes={routes} />
-        <Outlet />
+        <RoutesScreen selectedRouteId={params.routeId} routes={routes} />
+        <div>
+          <p>Please select a route.</p>
+        </div>
       </main>
       <footer className="flex justify-center">
         <a className="text-center block p-4 mx-8 w-full max-w-xs" href="#">
