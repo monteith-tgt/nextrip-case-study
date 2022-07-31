@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { getBooks } from './index';
 
 import booksData from '~/data/books';
@@ -6,6 +7,6 @@ import booksData from '~/data/books';
 
 test('getBooks() resolves to correct data', () => {
   return getBooks().then(books => {
-    expect(books).equal(booksData);
+    expect(books).toMatchObject(booksData);
   });
 });
