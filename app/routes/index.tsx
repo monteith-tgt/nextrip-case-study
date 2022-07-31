@@ -36,7 +36,7 @@ const Index = () => {
       <main className="flex">
         <RoutesScreen routes={routes} />
         <div>
-          <p>Select a route.</p>
+          <p>Please select a route.</p>
         </div>
       </main>
       <footer className="flex justify-center">

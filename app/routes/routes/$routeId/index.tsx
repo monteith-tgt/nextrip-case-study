@@ -1,7 +1,7 @@
 const RoutesRoute = () => {
   return (
     <>
-      <p>Routes/Index</p>
+      <p>Please select a direction.</p>
     </>
   );
 };

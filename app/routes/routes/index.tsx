@@ -1,7 +1,7 @@
 const IndexRoute = () => {
   return (
     <>
-      <p>Route/Index</p>
+      <p>Please select a route.</p>
     </>
   );
 };

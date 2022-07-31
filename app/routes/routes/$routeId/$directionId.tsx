@@ -12,7 +12,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 const DirectionsRoute = () => {
-  const places = useLoaderData();
+  const places: Place[] = useLoaderData();
 
   return (
     <>

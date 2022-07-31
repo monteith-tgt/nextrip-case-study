@@ -1,7 +1,7 @@
 const IndexRoute = () => {
   return (
     <>
-      <p>Routes/$routeId/$directionId/Index</p>
+      <p>Please select a stop.</p>
     </>
   );
 };

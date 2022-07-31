@@ -11,7 +11,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 const DirectionsRoute = () => {
-  const result = useLoaderData();
+  const result: NexTripResult = useLoaderData();
 
   return (
     <>
