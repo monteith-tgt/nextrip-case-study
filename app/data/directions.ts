@@ -7,11 +7,11 @@ import type { Direction } from '~/interfaces/nextrip';
 
 const directions: Direction[] = [
   {
-    direction_id: 0,
+    direction_id: '0',
     direction_name: 'Eastbound',
   },
   {
-    direction_id: 1,
+    direction_id: '1',
     direction_name: 'Westbound',
   },
 ];
