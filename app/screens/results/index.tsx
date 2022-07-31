@@ -1,9 +1,10 @@
 import type { ResultsScreenProps } from './props';
+import ResultCard from '~/components/ResultCard';
 
 const ResultsScreen = ({ result }: ResultsScreenProps) => {
   return (
     <div>
-      <pre>{JSON.stringify(result, null, 2)}</pre>
+      <ResultCard result={result} />
     </div>
   );
 };
