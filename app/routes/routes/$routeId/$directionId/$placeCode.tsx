@@ -25,7 +25,7 @@ const DirectionsRoute = () => {
     }, 30 * 1000);
 
     return () => clearInterval(resultInterval);
-  }, []);
+  }, [fetcher, params]);
 
   useEffect(() => {
     if (fetcher.data) {
