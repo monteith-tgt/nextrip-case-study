@@ -1,10 +1,13 @@
+import DirectionCard from '~/components/DirectionCard';
 import type { DirectionsScreenProps } from './props';
 
 const DirectionsScreen = ({ directions }: DirectionsScreenProps) => {
   return (
-    <div>
-      <pre>{JSON.stringify(directions, null, 2)}</pre>
-    </div>
+    <ul>
+      {directions.map(direction => (
+        <DirectionCard key={`direction_${direction.direction_id}`} direction={direction} />
+      ))}
+    </ul>
   );
 };
 

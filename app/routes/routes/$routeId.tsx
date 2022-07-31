@@ -1,6 +1,6 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { Outlet, useLoaderData } from '@remix-run/react';
+import { Outlet, useLoaderData, useParams } from '@remix-run/react';
 
 import { getDirections } from '~/client/nextrip';
 import type { Direction } from '~/interfaces/nextrip';
@@ -13,10 +13,11 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 const DirectionsRoute = () => {
   const directions: Direction[] = useLoaderData();
+  const params = useParams();
 
   return (
     <>
-      <DirectionsScreen directions={directions} />
+      <DirectionsScreen selectedDirectionId={params.directionId} directions={directions} />
       <Outlet />
     </>
   );

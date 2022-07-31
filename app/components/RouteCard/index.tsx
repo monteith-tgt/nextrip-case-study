@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react';
-import { TEST_IDS } from '~/constants/test/routeCard';
+import { TEST_IDS } from '~/constants/test/testId';
 import type { Route } from '~/interfaces/nextrip';
 
 function RouteCard({ route, selected }: { route: Route; selected?: boolean }) {
