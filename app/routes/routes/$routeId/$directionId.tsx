@@ -1,6 +1,6 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { Outlet, useLoaderData } from '@remix-run/react';
+import { Outlet, useLoaderData, useParams } from '@remix-run/react';
 
 import { getPlaces } from '~/client/nextrip';
 import type { Place } from '~/interfaces/nextrip';
@@ -13,10 +13,11 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 const DirectionsRoute = () => {
   const places: Place[] = useLoaderData();
+  const params = useParams();
 
   return (
     <>
-      <PlacesScreen places={places} />
+      <PlacesScreen selectedPlaceCode={params.placeCode} places={places} />
       <Outlet />
     </>
   );
