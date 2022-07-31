@@ -24,6 +24,7 @@ node_modules
 /api/index.js.map
 /app/tailwind.css
 api/index.js.map
+/api/_assets
 
 /cypress/screenshots
 /cypress/videos
