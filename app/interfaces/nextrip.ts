@@ -34,6 +34,12 @@ export type Place = {
   description?: string;
 };
 
+export type NexTripResult = {
+  stops?: Stop[];
+  alerts?: AlertMessage[];
+  departures?: Departure[];
+};
+
 export type Route = {
   route_id?: number;
   agency_id: string;
