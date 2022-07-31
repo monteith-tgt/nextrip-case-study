@@ -8,6 +8,13 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: 'https://dnb-stack.vercel.app',
+    baseUrl: 'http://localhost:3000',
+  },
+
+  component: {
+    devServer: {
+      framework: 'react',
+      bundler: 'vite',
+    },
   },
 });
