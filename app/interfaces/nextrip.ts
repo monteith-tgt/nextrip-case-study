@@ -1,3 +1,8 @@
+/**
+ * Types from https://svc.metrotransit.org/swagger/index.html
+ * Also relevant: https://svc.metrotransit.org/nextrip
+ */
+
 export type Agency = {
   agency_id: number;
   agency_name: string;
