@@ -40,6 +40,14 @@ export type NexTripResult = {
   departures?: Departure[];
 };
 
+export type ProblemDetails = {
+  type?: string;
+  title?: string;
+  status?: number;
+  detail?: string;
+  instance?: string;
+};
+
 export type Route = {
   route_id?: number;
   agency_id: string;
