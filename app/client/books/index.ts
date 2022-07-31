@@ -1,9 +1,7 @@
-import booksData from '~/data/books';
-
 import type { Book } from '~/interfaces/books';
 
-export const getBooks = (): Promise<Book[]> =>
-  new Promise((resolve, reject) => {
-    resolve(booksData);
-    // reject(new Error('Something went wrong'));
+export const getBooks = (): Promise<Book[]> => {
+  return new Promise(resolve => {
+    fetch('https://www.mock-api.com').then(response => resolve(response.json()));
   });
+};
