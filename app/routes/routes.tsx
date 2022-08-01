@@ -24,7 +24,7 @@ const Index = () => {
   return (
     <>
       <HeaderNav />
-      <main className="lg:flex lg:justify-start">
+      <main className="max-w-screen-xl  lg:flex lg:justify-start mx-auto">
         <RoutesScreen selectedRouteId={params.routeId} routes={routes} />
         <Outlet />
       </main>
