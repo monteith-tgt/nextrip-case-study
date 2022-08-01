@@ -7,21 +7,28 @@ function ResultCard({ result }: { result: NexTripResult; selected?: boolean }) {
   const stopId = result.stops?.at(0)?.stop_id;
 
   return (
-    <div data-testid={`${TEST_IDS.RESULTCARD}`}>
-      <div className="">
-        <h3>{routeDescription}</h3>
-        <span>Stop#: {stopId}</span>
+    <div className="w-full" data-testid={`${TEST_IDS.RESULTCARD}`}>
+      <div className="mb-4">
+        <h2 className="text-2xl uppercase font-bold">{routeDescription}</h2>
+        <p className="text-sm">Stop#: {stopId}</p>
       </div>
       {result.alerts?.map(alert => (
-        <p key={`alert-${alert.alert_text}`} role="alert">
+        <p
+          className={`p-3 border mb-3 text-sm rounded ${
+            alert.stop_closed
+              ? 'border-red-800 bg-red-300 text-red-800'
+              : 'bg-yellow-200 border-yellow-900 text-yellow-900'
+          }`}
+          key={`alert-${alert.alert_text}`}
+          role="alert">
           {alert.alert_text}
         </p>
       ))}
       {result.departures?.length ? (
-        <table>
+        <table className="mt-4 w-full">
           <caption className="sr-only">{`Departures for ${routeDescription}`}</caption>
           <thead>
-            <tr>
+            <tr className="text-xl font-bold">
               <td>Route</td>
               <td>Destination</td>
               <td>Departs</td>

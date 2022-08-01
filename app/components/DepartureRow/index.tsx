@@ -8,7 +8,9 @@ function DepartureRow({ departure }: { departure: Departure }) {
       <td>{routeName}</td>
       <td>{departure.description}</td>
       <td>
-        {departure.actual && <img src="/images/broadcast-blue.svg" alt="Live departure time" />}
+        {departure.actual && (
+          <img className="float-left mr-2" src="/images/broadcast-blue.svg" alt="Live departure time" />
+        )}
         <span>{departure.departure_text}</span>
       </td>
     </tr>

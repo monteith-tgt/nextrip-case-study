@@ -20,7 +20,7 @@ const Index = () => {
   return (
     <>
       <HeaderNav />
-      <main className="flex">
+      <main className="lg:flex lg:justify-between">
         <RoutesScreen selectedRouteId={params.routeId} routes={routes} />
         <div>
           <p>Please select a route.</p>
