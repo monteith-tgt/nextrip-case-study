@@ -16,7 +16,7 @@ const DirectionsScreen = ({ directions, selectedDirectionId }: DirectionsScreenP
           </Link>
         </div>
       ) : (
-        <div className="max-h-96 overflow-y-scroll p-2">
+        <div className="max-h-96 scrolling-touch overflow-y-scroll p-2">
           <ul>
             {directions.map(direction => (
               <DirectionCard

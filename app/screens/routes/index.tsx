@@ -15,7 +15,7 @@ const RoutesScreen = ({ routes, selectedRouteId }: RoutesScreenProps) => {
           </Link>
         </div>
       ) : (
-        <div className="max-h-96 overflow-y-scroll p-2">
+        <div className="scrolling-touch max-h-96 overflow-y-scroll p-2">
           <ul>
             {routes.map(route => (
               <RouteCard selected={selectedRouteId === route.route_id} key={`route_${route.route_id}`} route={route} />
