@@ -12,21 +12,25 @@ function ResultCard({ result }: { result: NexTripResult; selected?: boolean }) {
         <h3>{routeDescription}</h3>
         <span>Stop#: {stopId}</span>
       </div>
-      <table>
-        <caption className="sr-only">{`Departures for ${routeDescription}`}</caption>
-        <thead>
-          <tr>
-            <td>Route</td>
-            <td>Destination</td>
-            <td>Departs</td>
-          </tr>
-        </thead>
-        <tbody>
-          {result.departures?.map(departure => (
-            <DepartureRow key={departure.trip_id} departure={departure} />
-          ))}
-        </tbody>
-      </table>
+      {result.departures?.length ? (
+        <table>
+          <caption className="sr-only">{`Departures for ${routeDescription}`}</caption>
+          <thead>
+            <tr>
+              <td>Route</td>
+              <td>Destination</td>
+              <td>Departs</td>
+            </tr>
+          </thead>
+          <tbody>
+            {result.departures?.map(departure => (
+              <DepartureRow key={departure.trip_id} departure={departure} />
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No departures at this time.</p>
+      )}
     </div>
   );
 }

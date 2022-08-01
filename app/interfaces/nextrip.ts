@@ -40,12 +40,14 @@ export type Place = {
 };
 
 export type NexTripResult = {
+  success: true;
   stops?: Stop[];
   alerts?: AlertMessage[];
   departures?: Departure[];
 };
 
 export type ProblemDetails = {
+  success: false;
   type?: string;
   title?: string;
   status?: number;

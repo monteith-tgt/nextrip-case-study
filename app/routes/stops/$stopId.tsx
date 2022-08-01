@@ -2,34 +2,26 @@ import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { Outlet, useCatch, useFetcher, useLoaderData, useParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
-import { getResults } from '~/client/nextrip';
+
+import { getResultByStop } from '~/client/nextrip';
+import StopForm from '~/components/StopForm';
 import type { NexTripResult, ProblemDetails } from '~/interfaces/nextrip';
 import ResultsScreen from '~/screens/results';
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const result: NexTripResult | ProblemDetails = await getResults(
-    params?.routeId,
-    params?.directionId,
-    params?.placeCode,
-  );
-
-  return json(result);
+  const result: NexTripResult | ProblemDetails = await getResultByStop(params?.stopId);
+  if (result.success) {
+    return json(result);
+  }
+  throw new Response(result.detail, { status: result.status });
 };
 
 export function CatchBoundary() {
   const caught = useCatch();
-
-  return (
-    <div>
-      <h2>
-        {caught.status}: {caught.data}
-      </h2>
-      <p>Please select a stop.</p>
-    </div>
-  );
+  return <StopForm error={caught} />;
 }
 
-const DirectionsRoute = () => {
+const StopIdRoute = () => {
   const loaderData: NexTripResult = useLoaderData();
   const [result, setResult] = useState(loaderData);
   const fetcher = useFetcher();
@@ -38,7 +30,7 @@ const DirectionsRoute = () => {
   useEffect(() => {
     const resultInterval = setInterval(() => {
       if (document.visibilityState === 'visible') {
-        fetcher.load(`/routes/${params.routeId}/${params.directionId}/${params.placeCode}`);
+        fetcher.load(`/stops/${params.stopId}`);
       }
     }, 30 * 1000);
 
@@ -59,4 +51,4 @@ const DirectionsRoute = () => {
   );
 };
 
-export default DirectionsRoute;
+export default StopIdRoute;
