@@ -1,10 +1,13 @@
 import type { PlacesScreenProps } from './props';
+import PlaceCard from '~/components/PlaceCard';
 
-const PlacesScreen = ({ places }: PlacesScreenProps) => {
+const PlacesScreen = ({ places, selectedPlaceCode }: PlacesScreenProps) => {
   return (
-    <div>
-      <pre>{JSON.stringify(places, null, 2)}</pre>
-    </div>
+    <ul>
+      {places.map(place => (
+        <PlaceCard selected={selectedPlaceCode == place.place_code} key={`place_${place.place_code}`} place={place} />
+      ))}
+    </ul>
   );
 };
 
