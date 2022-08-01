@@ -4,6 +4,7 @@ import routes from '../data/routes';
 import directions from '../data/directions';
 import places from '../data/places';
 import results from '../data/results';
+import stops from '../data/stops';
 
 export default [
   rest.get('https://www.mock-api.com', (_, response, context) => {
@@ -24,5 +25,9 @@ export default [
 
   rest.get('https://svc.metrotransit.org/nextripv2/*/*/*', (_, response, context) => {
     return response(context.status(200), context.json(results));
+  }),
+
+  rest.get('https://svc.metrotransit.org/nextripv2/*', (_, response, context) => {
+    return response(context.status(200), context.json(stops));
   }),
 ];

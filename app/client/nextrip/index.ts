@@ -32,3 +32,13 @@ export const getResults = (routeId?: string, directionId?: string, placeCode?: s
     ),
   );
 };
+
+export const getResultByStop = (stopId?: string): Promise<NexTripResult> => {
+  return new Promise((resolve, reject) =>
+    fetch(`https://svc.metrotransit.org/nextripv2/${stopId}`)
+      .then(response => resolve(response.json()))
+      .catch(error => {
+        reject(error);
+      }),
+  );
+};
