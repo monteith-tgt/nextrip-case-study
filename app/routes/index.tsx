@@ -23,7 +23,7 @@ const Index = () => {
       <main className="max-w-screen-xl lg:flex lg:justify-start mx-auto">
         <RoutesScreen selectedRouteId={params.routeId} routes={routes} />
         <div>
-          <p>Please select a route.</p>
+          <p className="mx-8 mt-12">Please select a route.</p>
         </div>
       </main>
       <Footer />
