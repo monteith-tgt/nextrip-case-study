@@ -1,5 +1,15 @@
 # nextrip-case-study
 
+## Project Information
+
+### Live Demo
+
+[https://nextrip-case-study.vercel.app/](https://nextrip-case-study.vercel.app/)
+
+### Trello
+
+[nextrip-case-study Board](https://trello.com/invite/b/iobvTDak/119a582cc7cc7392324532e950b1243a/nextrip-case-study)
+
 ## Development
 
 Make sure the dependencies are installed
