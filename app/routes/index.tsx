@@ -9,7 +9,7 @@ import HeaderNav from '~/components/HeaderNav';
 import Footer from '~/components/Footer';
 
 export const loader: LoaderFunction = async () => {
-  const routes: Route[] = await getRoutes();
+  const routes = await getRoutes();
   return json(routes);
 };
 

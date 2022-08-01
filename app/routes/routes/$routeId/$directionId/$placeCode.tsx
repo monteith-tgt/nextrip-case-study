@@ -1,15 +1,33 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { Outlet, useFetcher, useLoaderData, useParams } from '@remix-run/react';
+import { Outlet, useCatch, useFetcher, useLoaderData, useParams } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { getResults } from '~/client/nextrip';
-import type { NexTripResult } from '~/interfaces/nextrip';
+import type { NexTripResult, ProblemDetails } from '~/interfaces/nextrip';
 import ResultsScreen from '~/screens/results';
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const result: NexTripResult = await getResults(params?.routeId, params?.directionId, params?.placeCode);
+  const result: NexTripResult | ProblemDetails = await getResults(
+    params?.routeId,
+    params?.directionId,
+    params?.placeCode,
+  );
+
   return json(result);
 };
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <div>
+      <h2>
+        {caught.status}: {caught.data}
+      </h2>
+      <p>Please select a stop.</p>
+    </div>
+  );
+}
 
 const DirectionsRoute = () => {
   const loaderData: NexTripResult = useLoaderData();

@@ -1,19 +1,19 @@
-import type { Route, Direction, Place, NexTripResult } from '~/interfaces/nextrip';
+import type { Route, Direction, Place, NexTripResult, ProblemDetails } from '~/interfaces/nextrip';
 
-export const getRoutes = (): Promise<Route[]> => {
+export const getRoutes = (): Promise<Route[] | ProblemDetails> => {
   return new Promise(resolve =>
     fetch('https://svc.metrotransit.org/nextripv2/routes').then(response => resolve(response.json())),
   );
 };
 
-export const getDirections = (routeId?: string): Promise<Direction[]> => {
+export const getDirections = (routeId?: string): Promise<Direction[] | ProblemDetails> => {
   if (!routeId) Promise.reject({ error: 'Route ID missing.' });
   return new Promise(resolve =>
     fetch(`https://svc.metrotransit.org/nextripv2/directions/${routeId}`).then(response => resolve(response.json())),
   );
 };
 
-export const getPlaces = (routeId?: string, directionId?: string): Promise<Place[]> => {
+export const getPlaces = (routeId?: string, directionId?: string): Promise<Place[] | ProblemDetails> => {
   if (!routeId || !directionId) Promise.reject({ error: 'One or more of a route ID or direction ID is missing.' });
   return new Promise(resolve =>
     fetch(`https://svc.metrotransit.org/nextripv2/stops/${routeId}/${directionId}`).then(response =>
@@ -22,7 +22,11 @@ export const getPlaces = (routeId?: string, directionId?: string): Promise<Place
   );
 };
 
-export const getResults = (routeId?: string, directionId?: string, placeCode?: string): Promise<NexTripResult> => {
+export const getResults = (
+  routeId?: string,
+  directionId?: string,
+  placeCode?: string,
+): Promise<NexTripResult | ProblemDetails> => {
   if (!routeId || !directionId)
     Promise.reject({ error: 'One or more of a route ID, direction ID, or placeCode is missing.' });
 
@@ -33,12 +37,16 @@ export const getResults = (routeId?: string, directionId?: string, placeCode?: s
   );
 };
 
-export const getResultByStop = (stopId?: string): Promise<NexTripResult> => {
-  return new Promise((resolve, reject) =>
-    fetch(`https://svc.metrotransit.org/nextripv2/${stopId}`)
-      .then(response => resolve(response.json()))
-      .catch(error => {
-        reject(error);
-      }),
-  );
-};
+export async function getResultByStop(stopId?: string) {
+  const response = await fetch(`https://svc.metrotransit.org/nextripv2/${stopId}`).then(res => res.json());
+  if (response.stops && response.departures) {
+    return {
+      success: true,
+      ...response,
+    };
+  }
+  return {
+    success: false,
+    ...response,
+  };
+}
