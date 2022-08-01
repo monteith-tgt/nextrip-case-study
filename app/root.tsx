@@ -6,7 +6,7 @@ import globalStyles from './styles/globals.css';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  title: 'Remix DnB Stack',
+  title: 'NexTrip Case Study',
   viewport: 'width=device-width,initial-scale=1',
 });
 

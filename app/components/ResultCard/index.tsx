@@ -12,6 +12,11 @@ function ResultCard({ result }: { result: NexTripResult; selected?: boolean }) {
         <h3>{routeDescription}</h3>
         <span>Stop#: {stopId}</span>
       </div>
+      {result.alerts?.map(alert => (
+        <p key={`alert-${alert.alert_text}`} role="alert">
+          {alert.alert_text}
+        </p>
+      ))}
       {result.departures?.length ? (
         <table>
           <caption className="sr-only">{`Departures for ${routeDescription}`}</caption>
