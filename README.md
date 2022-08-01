@@ -26,6 +26,16 @@ yarn hook
 
 ### Relevant code
 
+```sh
+/app..
+  /___tests___    Route tests
+  /client         Client API helper
+  /components     Components
+  /interfaces     Types
+  /routes         Route entry files
+  /screens        Page components
+```
+
 ## Deployment
 
 This stack has a github action for automated deploy on merge on the following branches: **qa**, **dev** or **main**.
@@ -43,26 +53,26 @@ npm i -g vercel
 vercel
 ```
 
-## GitHub Actions
-
-Anything that gets into the `main` branch will be deployed to production after running tests/build/etc. Anything in the `dev` branch will be deployed to staging. There is a also a `qa` branch that is used for testing.
-
-## Testing
-
-### Cypress
-
-You'll find end-to-end tests in the `cypress` directory. As you make changes, add to an existing file or create a new file in the `cypress/integration/e2e` directory to test your changes.
-
-To run a specific test(flow) in development, run `FLOW=books yarn cypress:run:flow` which will start the dev server for the app as well as the Cypress client. Make sure the app is running.
-
-By _flow_ we want to define some user flows that we will test. For example, if we want to test the app with a user that wants to see the list of books, we can test that by running `FLOW=books yarn cypress:run:flow`.
-
-This can be later extended to run multiple flows. Followed the provided example to extend this further.
-
-### Vitest
+### Testing
 
 You can run the tests with `yarn test` or `yarn vitest:coverage` to also show the coverage.
 
 ### Linting
 
 This project uses ESLint for linting. That is configured in `.eslintrc.js`.
+
+## Assumptions
+
+- "Minneapolis Metro Transit bus line" refers to all metro transit, and not just bus types
+- This app is not scaled to a large audience. If scaled, external service requests would need to be throttled and/or cached
+- Stops by route and direction are variable and need to be fetched at runtime
+- Routes, Directions, Places are not variable and can be fetched at build time
+- Traffic skews heavier to mobile
+
+## Regrets & Challenges
+
+Testing (w/ RTL and Cypress) proved more difficult with Remix than I was led to believe. Unit testing capabilities seems limited (albeit somewhat intentionally: [Github Issue](https://github.com/remix-run/remix/discussions/2481)).
+
+The Cypress issues semed more PEBKAC, but I moved past them in order to complete the application.
+
+In an ideal production scenario, there would be heavier coverage through integration tests. A number of states are also uncovered because of my challenges with testing in Remix.
