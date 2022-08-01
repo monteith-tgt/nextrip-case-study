@@ -1,4 +1,4 @@
-import { TEST_IDS } from '~/constants/test/routeCard';
+import { TEST_IDS } from '~/constants/test/testId';
 import routes from '~/data/routes';
 
 describe('RoutesScreen', () => {

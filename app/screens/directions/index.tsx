@@ -1,10 +1,17 @@
+import DirectionCard from '~/components/DirectionCard';
 import type { DirectionsScreenProps } from './props';
 
-const DirectionsScreen = ({ directions }: DirectionsScreenProps) => {
+const DirectionsScreen = ({ directions, selectedDirectionId }: DirectionsScreenProps) => {
   return (
-    <div>
-      <pre>{JSON.stringify(directions, null, 2)}</pre>
-    </div>
+    <ul>
+      {directions.map(direction => (
+        <DirectionCard
+          selected={selectedDirectionId == direction.direction_id}
+          key={`direction_${direction.direction_id}`}
+          direction={direction}
+        />
+      ))}
+    </ul>
   );
 };
 

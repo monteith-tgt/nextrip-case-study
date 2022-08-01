@@ -30,7 +30,7 @@ export type Departure = {
 };
 
 export type Direction = {
-  direction_id: number;
+  direction_id: string;
   direction_name?: string;
 };
 
