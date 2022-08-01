@@ -83,6 +83,6 @@ This project uses ESLint for linting. That is configured in `.eslintrc.js`.
 
 Testing (w/ RTL and Cypress) proved more difficult with Remix than I was led to believe. Unit testing capabilities seems limited (albeit somewhat intentionally: [Github Issue](https://github.com/remix-run/remix/discussions/2481)).
 
-The Cypress issues semed more PEBKAC, but I moved past them in order to complete the application.
+The Cypress issues semed more PEBKAC, but I moved past them in order to complete the application. Ultimately, I ran out of time.
 
-In an ideal production scenario, there would be heavier coverage through integration tests. A number of states are also uncovered because of my challenges with testing in Remix.
+In an ideal production scenario, there would be heavier coverage through integration tests focused on real user flows and interactions. A number of states are also uncovered because of my challenges with testing in Remix.
